@@ -2,29 +2,23 @@
   (:require [clojure.string :as str])
   (:gen-class))
 
+(defn atom-ex
+  [x]
+
+  (def atomEx (atom x))
+  (add-watch atomEx :watcher
+             (fn [key atom old-state new-state]
+               (println "atomEx changed from " old-state " to " new-state)))
+  (println "1st x" @atomEx)
+  (reset! atomEx 10)
+  (println "2nd x" @atomEx)
+  (swap! atomEx inc)
+  (println "Increment x" @atomEx))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
 
-  (def str1 "This is my 2nd string")
-  (str/blank? str1)
-  (str/includes? str1 "my")
-  (str/index-of str1 "my")
-  (str/split str1 #" ")
-  (str/join " " ["The" "Big" "Cheese"])
-  (println (list "Dog" 1 3.4 true))
-  (println (first (list 1 2 3 4)))
-  (println (rest (list 1 2 3 4)))
-  (println (nth (list 1 2 3 4) 2))
-  (println (list* 1 2 [3 4]))
-  (println "----------------")
-  (println (set '(1 1 2)))
-  (println (get (set '(1 1 2)) 2))
-  (println (conj (set '(3 2)) 2))
-  (println (disj (set '(3 2)) 3))
-  (println "----------------")
-  (println (vector 3 2 1))
-  (println (get (vector 3 2 1) 1))
-  (println (conj (vector 3 2 1) 7)))
+  (atom-ex  5))
 
 (-main)
