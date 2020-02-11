@@ -16,6 +16,10 @@
   (println (first (list 1 2 3 4)))
   (println (rest (list 1 2 3 4)))
   (println (nth (list 1 2 3 4) 2))
-  (println (list* 1 2 [3 4])))
+  (println (list* 1 2 [3 4]))
+  (println (set '(1 1 2)))
+  (println (get (set '(1 1 2)) 2))
+  (println (conj (set '(3 2)) 2))
+  (println (disj (set '(3 2)) 3)))
 
 (-main)
